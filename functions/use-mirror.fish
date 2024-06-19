@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function use-mirror
     set -l location $argv[1]
 
