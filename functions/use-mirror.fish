@@ -3,12 +3,13 @@ function use-mirror
 
     if test "$location" = "china"
         # Set Homebrew to use Chinese mirrors
-        set -Ux HOMEBREW_API_DOMAIN "https://mirrors.aliyun.com/homebrew-bottles/api"
-        set -Ux HOMEBREW_BREW_GIT_REMOTE "https://mirrors.aliyun.com/homebrew/brew.git"
-        set -Ux HOMEBREW_BOTTLE_DOMAIN "https://mirrors.aliyun.com/homebrew/homebrew-bottles"
+        set -Ux HOMEBREW_API_DOMAIN "https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+        set -Ux HOMEBREW_BREW_GIT_REMOTE "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+        set -Ux HOMEBREW_BOTTLE_DOMAIN "https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+        set -Ux HOMEBREW_PIP_INDEX_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
 
-        brew tap -v --custom-remote --force-auto-update homebrew/command-not-found https://mirrors.aliyun.com/homebrew/homebrew-command-not-found.git
-        brew tap -v --custom-remote --force-auto-update homebrew/services https://mirrors.aliyun.com/homebrew/homebrew-services.git
+        brew tap -v --custom-remote --force-auto-update homebrew/command-not-found https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-command-not-found.git
+        brew tap -v --custom-remote --force-auto-update homebrew/services https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-services.git
 
         brew update
 
