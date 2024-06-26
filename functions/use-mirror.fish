@@ -2,7 +2,7 @@ function use-mirror
     set -l location $argv[1]
 
     if test "$location" = "china"
-        # Set Homebrew to use Chinese mirrors
+        # Homebrew
         set -Ux HOMEBREW_API_DOMAIN "https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
         set -Ux HOMEBREW_BREW_GIT_REMOTE "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
         set -Ux HOMEBREW_BOTTLE_DOMAIN "https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
@@ -13,17 +13,20 @@ function use-mirror
 
         brew update
 
+        # pip
+        set -Ux PIP_INDEX_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
+
+        # nvm
+        set -Ux NVM_MIRROR "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
+
     else if test "$location" = "us"
-        # Unset all mirrors and use default hosts
+        # Homebrew
         set -e HOMEBREW_API_DOMAIN
         set -e HOMEBREW_BREW_GIT_REMOTE
-        set -e HOMEBREW_CORE_GIT_REMOTE
         set -e HOMEBREW_BOTTLE_DOMAIN
 
-        # Reset Git remotes
         git -C (brew --repo) remote set-url origin https://github.com/Homebrew/brew
 
-        # Reset all taps
         set -l BREW_TAPS (brew tap | tr '\n' ' ')
         for tap in command-not-found services
             if contains "homebrew/$tap" $BREW_TAPS
@@ -32,6 +35,12 @@ function use-mirror
         end
 
         brew update
+
+        # pip
+        set -Ux PIP_INDEX_URL "https://pypi.org/simple"
+
+        # nvm
+        set -Ux NVM_MIRROR "https://nodejs.org/dist/"
 
     else
         echo "Usage: use-mirror china|us"
