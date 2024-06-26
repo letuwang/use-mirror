@@ -17,7 +17,7 @@ function use-mirror
         set -Ux PIP_INDEX_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
 
         # nvm
-        set -Ux NVM_MIRROR "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
+        set -Ux nvm_mirror "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
 
     else if test "$location" = "us"
         # Homebrew
@@ -40,7 +40,7 @@ function use-mirror
         set -Ux PIP_INDEX_URL "https://pypi.org/simple"
 
         # nvm
-        set -Ux NVM_MIRROR "https://nodejs.org/dist/"
+        set -Ux nvm_mirror "https://nodejs.org/dist/"
 
     else
         echo "Usage: use-mirror china|us"
