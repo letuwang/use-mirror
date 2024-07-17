@@ -19,6 +19,9 @@ function use-mirror
         # fnm
         set -Ux FNM_NODE_DIST_MIRROR "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
 
+        # npm
+        npm config set registry https://registry.npmmirror.com
+
     else if test "$location" = "us"
         # Homebrew
         set -e HOMEBREW_API_DOMAIN
@@ -41,6 +44,9 @@ function use-mirror
 
         # fnm
         set -Ux FNM_NODE_DIST_MIRROR "https://nodejs.org/dist/"
+
+        # npm
+        npm config set registry https://registry.npmjs.org
 
     else
         echo "Usage: use-mirror china|us"
