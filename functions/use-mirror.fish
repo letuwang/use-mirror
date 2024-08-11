@@ -26,8 +26,8 @@ function use-mirror
         set -Ux POETRY_PYPI_MIRROR_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
 
         # rust
-        set -x RUSTUP_UPDATE_ROOT https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
-        set -x RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
+        set -Ux RUSTUP_UPDATE_ROOT https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
+        set -Ux RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
 
     else if test "$location" = "us"
         # Homebrew
