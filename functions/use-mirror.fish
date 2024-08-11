@@ -20,7 +20,14 @@ function use-mirror
         set -Ux FNM_NODE_DIST_MIRROR "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
 
         # npm
-        npm config set registry https://registry.npmmirror.com
+        npm config set registry https://registry.npmmirror.com --location=global
+
+        # poetry
+        set -Ux POETRY_PYPI_MIRROR_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
+
+        # rust
+        set -x RUSTUP_UPDATE_ROOT https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
+        set -x RUSTUP_DIST_SERVER https://mirrors.tuna.tsinghua.edu.cn/rustup
 
     else if test "$location" = "us"
         # Homebrew
@@ -46,7 +53,13 @@ function use-mirror
         set -Ux FNM_NODE_DIST_MIRROR "https://nodejs.org/dist/"
 
         # npm
-        npm config set registry https://registry.npmjs.org
+        npm config set registry https://registry.npmjs.org --location=global
+
+        # poetry
+        set -e POETRY_PYPI_MIRROR_URL
+
+        # rust
+        set -e RUSTUP_UPDATE_ROOT
 
     else
         echo "Usage: use-mirror china|us"
