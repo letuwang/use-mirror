@@ -34,15 +34,12 @@ function use-mirror
         set -e HOMEBREW_API_DOMAIN
         set -e HOMEBREW_BREW_GIT_REMOTE
         set -e HOMEBREW_BOTTLE_DOMAIN
+        set -e HOMEBREW_PIP_INDEX_URL
 
         git -C (brew --repo) remote set-url origin https://github.com/Homebrew/brew
 
-        set -l BREW_TAPS (brew tap | tr '\n' ' ')
-        for tap in command-not-found services
-            if contains "homebrew/$tap" $BREW_TAPS
-                brew tap --custom-remote "homebrew/$tap" "https://github.com/Homebrew/homebrew-$tap"
-            end
-        end
+        brew tap -v --custom-remote --force-auto-update homebrew/command-not-found https://github.com/Homebrew/homebrew-command-not-found
+        brew tap -v --custom-remote --force-auto-update homebrew/services https://github.com/Homebrew/homebrew-services
 
         brew update
 
