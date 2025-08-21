@@ -8,8 +8,8 @@ function use-mirror
         set -Ux HOMEBREW_BOTTLE_DOMAIN "https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
         set -Ux HOMEBREW_PIP_INDEX_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
 
-        brew tap -v --custom-remote --force-auto-update homebrew/command-not-found https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-command-not-found.git
-        brew tap -v --custom-remote --force-auto-update homebrew/services https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-services.git
+        brew tap --custom-remote homebrew/command-not-found https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-command-not-found.git
+        brew tap --custom-remote homebrew/services https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-services.git
 
         brew update
 
@@ -20,7 +20,7 @@ function use-mirror
         set -Ux FNM_NODE_DIST_MIRROR "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
 
         # npm
-        npm config set registry https://registry.npmmirror.com --location=global
+        npm config set registry https://registry.npmmirror.com
 
         # poetry
         set -Ux POETRY_PYPI_MIRROR_URL "https://pypi.tuna.tsinghua.edu.cn/simple"
@@ -38,8 +38,8 @@ function use-mirror
 
         git -C (brew --repo) remote set-url origin https://github.com/Homebrew/brew
 
-        brew tap -v --custom-remote --force-auto-update homebrew/command-not-found https://github.com/Homebrew/homebrew-command-not-found
-        brew tap -v --custom-remote --force-auto-update homebrew/services https://github.com/Homebrew/homebrew-services
+        brew tap --custom-remote homebrew/command-not-found https://github.com/Homebrew/homebrew-command-not-found
+        brew tap --custom-remote homebrew/services https://github.com/Homebrew/homebrew-services
 
         brew update
 
@@ -50,7 +50,7 @@ function use-mirror
         set -Ux FNM_NODE_DIST_MIRROR "https://nodejs.org/dist/"
 
         # npm
-        npm config set registry https://registry.npmjs.org --location=global
+        npm config set registry https://registry.npmjs.org
 
         # poetry
         set -e POETRY_PYPI_MIRROR_URL
