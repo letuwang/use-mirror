@@ -19,6 +19,11 @@ function use-mirror
         # fnm
         set -Ux FNM_NODE_DIST_MIRROR "https://mirrors.ustc.edu.cn/node/"
 
+        # mise
+        if command -q mise
+            mise settings set node.mirror_url "https://mirrors.aliyun.com/nodejs-release/"
+        end
+
         # npm
         npm config set registry https://registry.npmmirror.com
 
@@ -56,6 +61,11 @@ function use-mirror
 
         # fnm
         set -Ux FNM_NODE_DIST_MIRROR "https://nodejs.org/dist/"
+
+        # mise
+        if command -q mise
+            mise settings set node.mirror_url "https://nodejs.org/dist/"
+        end
 
         # npm
         if command -q npm
