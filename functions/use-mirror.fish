@@ -15,6 +15,7 @@ function use-mirror
 
         # pip
         set -Ux PIP_INDEX_URL "https://mirrors.ustc.edu.cn/pypi/simple"
+        use-mirror-pip-conf "https://mirrors.ustc.edu.cn/pypi/simple"
 
         # fnm
         set -Ux FNM_NODE_DIST_MIRROR "https://mirrors.ustc.edu.cn/node/"
@@ -36,11 +37,11 @@ function use-mirror
 
     else if test "$location" = "us"
         # Homebrew
-        set -e HOMEBREW_API_DOMAIN
-        set -e HOMEBREW_BREW_GIT_REMOTE
-        set -e HOMEBREW_CORE_GIT_REMOTE
-        set -e HOMEBREW_BOTTLE_DOMAIN
-        set -e HOMEBREW_PIP_INDEX_URL
+        for var in HOMEBREW_API_DOMAIN HOMEBREW_BREW_GIT_REMOTE HOMEBREW_CORE_GIT_REMOTE HOMEBREW_BOTTLE_DOMAIN HOMEBREW_PIP_INDEX_URL
+            if set -q $var
+                set -e $var
+            end
+        end
         if command -q brew
             set -l brew_repo (brew --repo)
             if test -d "$brew_repo/.git"
@@ -58,6 +59,7 @@ function use-mirror
 
         # pip
         set -Ux PIP_INDEX_URL "https://pypi.org/simple"
+        use-mirror-pip-conf "https://pypi.org/simple"
 
         # fnm
         set -Ux FNM_NODE_DIST_MIRROR "https://nodejs.org/dist/"
@@ -73,11 +75,11 @@ function use-mirror
         end
 
         # poetry
-        set -e POETRY_PYPI_MIRROR_URL
-
-        # rust
-        set -e RUSTUP_UPDATE_ROOT
-        set -e RUSTUP_DIST_SERVER
+        for var in POETRY_PYPI_MIRROR_URL RUSTUP_UPDATE_ROOT RUSTUP_DIST_SERVER
+            if set -q $var
+                set -e $var
+            end
+        end
 
     else
         echo "Usage: use-mirror china|us"
